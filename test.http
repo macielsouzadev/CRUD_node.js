@@ -1,0 +1,52 @@
+### Login
+POST http://localhost:50001/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "admin",
+  "senha": "admin123"
+}
+
+### Buscar todos (substituir TOKEN pelo valor retornado no login)
+GET http://localhost:50001/cliente
+Authorization: Bearer TOKEN
+
+### Buscar por ID
+GET http://localhost:50001/cliente/1
+Authorization: Bearer TOKEN
+
+### Inserir cliente
+POST http://localhost:50001/cliente
+Content-Type: application/json
+Authorization: Bearer TOKEN
+
+{
+  "nome": "João Silva",
+  "profissao": "Desenvolvedor"
+}
+
+### Atualizar cliente
+PUT http://localhost:50001/cliente/1
+Content-Type: application/json
+Authorization: Bearer TOKEN
+
+{
+  "nome": "João Atualizado",
+  "profissao": "Dev Senior"
+}
+
+### Deletar cliente
+DELETE http://localhost:50001/cliente/2
+Authorization: Bearer TOKEN
+
+### Teste sem token (deve retornar 401)
+GET http://localhost:50001/cliente
+
+### Teste credencial errada (deve retornar 401)
+POST http://localhost:50001/auth/login
+Content-Type: application/json
+
+{
+  "usuario": "admin",
+  "senha": "errada"
+}
